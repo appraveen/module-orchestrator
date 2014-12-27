@@ -1,0 +1,22 @@
+{
+		"ModuleOne" : {
+			"config": {
+				"type":"ADD",
+				"times" : 1
+			}
+		},
+		"ModuleTwo" : {
+			"dependency": ["ModuleOne"],
+			"config": {
+				"type":"MUL",
+				"times" : 1,
+				"timeout" : false
+			}
+		},
+		"ModuleThree" : {
+			"dependency": ["ModuleTwo"]
+		},
+		"ModuleFour" : {
+			"dependency": ["ModuleTwo","ModuleThree"]
+		}
+}

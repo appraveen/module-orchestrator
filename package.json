@@ -1,0 +1,31 @@
+{
+  "name": "module-orchestrator",
+  "description": "A module for sequencing and executing tasks and dependencies in maximum concurrency",
+  "version": "0.0.1",
+  "homepage": "https://github.com/appraveen/module-orchestrator",
+  "repository": "git@github.com:appraveen/module-orchestrator.git",
+  "author": "Praveen Athmanathan (https://github.com/appraveen/)",
+  "main": "./index.js",
+  "keywords": [
+    "async",
+    "task",
+    "parallel",
+    "modules",
+    "orchestrator"
+  ],
+  "dependencies": {
+    "async": "~0.9.0",
+    "chai": "^1.10.0",
+    "chai-as-promised": "^4.1.1"
+  },
+  "devDependencies": {
+    "mocha": "~1.17.0",
+    "should": "~3.0.1"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "engines": {
+    "node": ">= 0.8"
+  }
+}
