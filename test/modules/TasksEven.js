@@ -7,13 +7,14 @@ var TasksEven = function() {
 TasksEven.prototype.Two = function(cb, results, ctx) {
 	//results object can be read through keys in ctx.datadep
 	//application logic goes here
+
 	setTimeout(function() {
 		cb(null,{'v': 2 });
 	}, 100);
+	
 };
 
 TasksEven.prototype.Four = function(cb, results, ctx) {
-	//console.log(ctx);
 	var factor1 = {}, factor2 = {};
 	if(ctx && ctx.datadep) {
 		factor1 = results[ctx.datadep[0]];
@@ -23,5 +24,15 @@ TasksEven.prototype.Four = function(cb, results, ctx) {
 	cb(null,{'v': tmp});
 };
 
+TasksEven.prototype.Six = function(cb, results, ctx) {
+	//application logic goes here
+	if(results.ModuleTestPromise && results.ModuleTestPromise.then) {
+		results.ModuleTestPromise.then(function(res) {
+			setTimeout(function() {
+				cb(null,{'v': 2 * res.v });
+			}, 100);
+		});
+	}
+};
 
 module.exports = TasksEven;

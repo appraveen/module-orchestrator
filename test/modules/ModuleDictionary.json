@@ -3,6 +3,8 @@
 	"ModuleTwo": { "path": "module-orchestrator/test/modules/TasksEven", "fn":"Two", "fntype":"instance"},
 	"ModuleThree": { "path": "module-orchestrator/test/modules/TasksOdd", "fn":"Three", "fntype":"instance"},
 	"ModuleFour": { "path": "module-orchestrator/test/modules/TasksEven", "fn":"Four", "fntype":"instance"},
+	"ModuleSix": { "path": "module-orchestrator/test/modules/TasksEven", "fn":"Six", "fntype":"instance"},
 	"ModuleTest": { "path": "module-orchestrator/test/modules/Tasks", "fn":"Test", "fntype":"static"},
+	"ModuleTestPromise": { "path": "module-orchestrator/test/modules/Tasks", "fn":"TestPromise", "fntype":"static"},
 	"ModuleGeneric": { "path": "module-orchestrator/test/modules/Tasks"}
 }

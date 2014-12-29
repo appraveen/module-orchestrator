@@ -10,8 +10,6 @@ describe("application-modules-test", function() {
 	
 	it(" verify module execution based on configuration", function(done) {
 		var ipmodules = require('./modules/modules.json');
-		var dictionary = require('./modules/ModuleDictionary.json');
-
 		var obj = helper.constructObject("orch app test", ipmodules);
 		
 		var ctxBuilder = function(name) {

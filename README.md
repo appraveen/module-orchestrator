@@ -66,7 +66,8 @@ var One = function(cb, results, ctx) {
       // read init values from ctx
       // read data dependency from results
       //call a service or resolve a promise here 
-  //finally call the callback pass error and output of this function    
+  //finally call the callback pass error and output of this function
+  //Note: when a promise is passed as the output, all the modules that depend on this output must understand that the result is a promise    
 	cb(null,{});
 };
 ````

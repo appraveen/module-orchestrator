@@ -58,5 +58,40 @@ describe("orchestrator-test", function() {
 		}
 	});
 
+	it("starting the same instance when the current one is running is not allowed", function(done) {
+		var ipmodules = {
+			"ModuleOne" : {},
+			"ModuleTwo" : {"dependency":["1","ModuleOne"]}
+		};
+
+		var obj = helper.constructObject("orch test 1", ipmodules);
+		var orch = new orchestrator(obj);
+		orch.start();
+		try {
+			orch.start();
+		} catch(e) {
+			done();
+		}
+	});
+
+	it("test promises", function(done) {
+		var ipmodules = {
+			"ModuleTestPromise" : {},
+			"ModuleSix" : {"dependency":["ModuleTestPromise"]}
+		};
+
+		var obj = helper.constructObject("orch test promise", ipmodules);
+		
+		try {
+			var o = new orchestrator(obj);
+			o.start(function(err, results) {
+				results.ModuleSix.v.should.equal(20);
+				done();	
+			});
+		} catch(e) {
+			console.log(e);
+		}
+	});
+
 
 });
