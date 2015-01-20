@@ -29,7 +29,7 @@
     "should": "~3.0.1"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "grunt simplemocha"
   },
   "engines": {
     "node": ">= 0.8"
