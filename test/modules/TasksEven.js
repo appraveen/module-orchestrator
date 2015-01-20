@@ -1,20 +1,18 @@
 'use strict';
 
-var TasksEven = function() {
+var TasksEven = {};
 
-}
-
-TasksEven.prototype.Two = function(cb, results, ctx) {
+TasksEven.Two = function(cb) {
 	//results object can be read through keys in ctx.datadep
 	//application logic goes here
-
+	
 	setTimeout(function() {
 		cb(null,{'v': 2 });
 	}, 100);
 	
 };
 
-TasksEven.prototype.Four = function(cb, results, ctx) {
+TasksEven.Four = function(cb, results, ctx) {
 	var factor1 = {}, factor2 = {};
 	if(ctx && ctx.datadep) {
 		factor1 = results[ctx.datadep[0]];
@@ -24,7 +22,7 @@ TasksEven.prototype.Four = function(cb, results, ctx) {
 	cb(null,{'v': tmp});
 };
 
-TasksEven.prototype.Six = function(cb, results, ctx) {
+TasksEven.Six = function(cb, results) {
 	//application logic goes here
 	if(results.ModuleTestPromise && results.ModuleTestPromise.then) {
 		results.ModuleTestPromise.then(function(res) {

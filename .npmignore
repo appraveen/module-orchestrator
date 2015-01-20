@@ -8,3 +8,4 @@ components
 .idea
 test
 .travis.yml
+.jshintrc

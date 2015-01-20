@@ -13,7 +13,7 @@ Orchestrator has to be instantiated and the input is passed as an object.
 ```javascript
 
 //create an object
-var orch = new orchestrator(inputObj);
+var orch = new orchestrator(config);
 
 //run the orchestrator	
 orch.start(function(err, results) {
@@ -23,9 +23,7 @@ orch.start(function(err, results) {
 
 ### Create
 
-Pass the input object to orchestrator with the below information
-
-__ObjectProperties__
+Pass the input configuration to orchestrator with the below information
 
 * `name` - Name of the orchestrator
 * `modules` - Contains the collection of all modules that are to be executed
@@ -35,21 +33,33 @@ __ObjectProperties__
 	    //ModuleDescription
 			"ModuleName1": { //Name of the module
 				"path": "modules/TasksOdd", //Path to find this module. 
-				"fn":"One", //Call this function after finding the module
-				"fntype":"instance" //invoke as instance or static. In case of instance, an object is created on the function that existed in the path. Example: (new TasksOdd()).One()
+				"on":"One", //Call this function after finding the module
 				"dependency":[] //Optional. array of dependencies
 			},
 			"ModuleName2" : {
 			  ...
-			  "dependency":["ModuleName1"]
+			  "dependency":["ModuleName1"] //Any dependency mentioned here should exists in 'modules'
 			}
 		}
 ```
+* `pathToContext` - Relative path to set the context on directory. Value of this property is prefixed before every `Module.path`. This is helpful when another node module wraps this orchestrator and you can set the context to any level
+* `moduleResolver` - Module Resolver provides a way to find the function that has to be executed. Module orchestrator comes with default resolver and you can pass one to override the default. Default resolver looks up the path and do a require with `pathToContext`
+* `ctxResolver` -  `ContextResolver` provides a way to build context for a module and the constructed context from the resolver is passed on to the actual module during execution
+* `onModuleComplete` - Callback to be called when a module is completed with either success or failure
+* `timeout` - Timeout for a task to complete
+* `diagnosis` - When set to true, orchestrator exposes `stats` object on the final callback function. `stats` contains time taken to complete the modules and the orchestrator as well as the completion state(SUCCESS or FAILURE). Sample stats object would look like
+````javascript
+{ 
+  sampleOrchestrator: { took: '103ms' }, //time taken for the orchestrator to complete
+  ModuleOne: { took: '1ms', state: 'COMPLETED_SUCCESS' }, 
+  ModuleTwo: { took: '101ms', state: 'COMPLETED_SUCCESS' },
+  ModReturnParam: { took: '0ms', state: 'COMPLETED_FAILURE' },
+  ModuleThree: { took: '0ms', state: 'COMPLETED_SUCCESS' },
+  ModuleFour: { took: '0ms', state: 'COMPLETED_SUCCESS' } 
+}
+````
+ Refer test/app-module-test for stats usage
 
-* `fnResolver` - Function Resolver provides a way to find the function that has to be executed. Module orchestrator comes with default resolver and you can pass one to override the default
-* `ctxResolver` -  `ContextResolver` provides a way to build context for a module and the constructed context from the resolver is passed on to the actual function during execution
-* `pathToContext` - Relative path to set the context on directory. Value of this property is prefixed before every `Module.path`.
- 
 ### Run
 After `start` is called on orchestrator, it delegates the work to async auto. Output of every module is stored in `results` object and passed on to every module execution. 
 
@@ -58,7 +68,7 @@ Every function whose reference is mentioned in `ModuleDescription` should hanldl
 
 * `cb` - callback. this function accepts `err` as first parameter and `result` as second parameter
 * `results` - results from modules that were executed before the current module
-* `ctx` - context object for the current module. this object is constructed using `ContextResolver`
+* `ctx` - context object for the current module. this object is constructed using `ctxResolver`
 
 ```javascript
 var One = function(cb, results, ctx) {
@@ -71,5 +81,4 @@ var One = function(cb, results, ctx) {
 	cb(null,{});
 };
 ````
-
-Refer test\app-module-test.js for more information on how modules can be structured and used.
+Refer test\modules\*.js for more information on how modules can be structured and used.
