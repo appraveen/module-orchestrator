@@ -32,18 +32,31 @@ Pass the input configuration to orchestrator with the below information
 	{
 	    //ModuleDescription
 			"ModuleName1": { //Name of the module
-				"path": "modules/TasksOdd", //Path to find this module. 
-				"on":"One", //Call this function after finding the module
 				"dependency":[] //Optional. array of dependencies
 			},
 			"ModuleName2" : {
-			  ...
 			  "dependency":["ModuleName1"] //Any dependency mentioned here should exists in 'modules'
 			}
 		}
 ```
 * `pathToContext` - Relative path to set the context on directory. Value of this property is prefixed before every `Module.path`. This is helpful when another node module wraps this orchestrator and you can set the context to any level
-* `moduleResolver` - Module Resolver provides a way to find the function that has to be executed. Module orchestrator comes with default resolver and you can pass one to override the default. Default resolver looks up the path and do a require with `pathToContext`
+* `moduleResolver` - Module Resolver provides a way to find the function that has to be executed. 
+```javascript
+    config.moduleResolver = function(modulename) {
+        //return a function based on the module name
+    }
+```
+Module orchestrator comes with a default resolver that looks up the path and do a require with `pathToContext`. In order to use Default resolver, path and method are needed as part of Module config
+
+```javascript
+			"ModuleName3": { //Name of the module
+				"path": "modules/TasksOdd", //Path to find this module. 
+				"method":"Three", //Call this function after finding the module
+				"dependency":[] //Optional. array of dependencies
+			},
+
+```
+
 * `ctxResolver` -  `ContextResolver` provides a way to build context for a module and the constructed context from the resolver is passed on to the actual module during execution
 * `onModuleComplete` - Callback to be called when a module is completed with either success or failure
 * `timeout` - Timeout for a task to complete

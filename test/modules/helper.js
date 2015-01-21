@@ -5,7 +5,7 @@ module.exports.constructObject = function(name, ipmodules) {
 	var obj = {};
 	obj.name = name;
 	obj.modules = {};
-	obj.pathToContext = '../../';
+	obj.pathToContext = '../';
 
 	for(var mod in ipmodules) {
 		obj.modules[mod] = dictionary[mod];

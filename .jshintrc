@@ -23,5 +23,6 @@
     "strict": false,
     "undef": true,
     "unused": true,
-    "exported":["should"]
+    "exported":["should"],
+    "expr": true
 }

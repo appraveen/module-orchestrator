@@ -1,12 +1,12 @@
 {
 	"ModReturnParam": { "path": "module-orchestrator/test/modules/ReturnParam"},
-	"ModuleOne": { "path": "module-orchestrator/test/modules/TasksOdd", "on":"One"},
-	"ModuleTwo": { "path": "module-orchestrator/test/modules/TasksEven", "on":"Two"},
-	"ModuleThree": { "path": "module-orchestrator/test/modules/TasksOdd", "on":"Three"},
-	"ModuleFour": { "path": "module-orchestrator/test/modules/TasksEven", "on":"Four"},
-	"ModuleSix": { "path": "module-orchestrator/test/modules/TasksEven", "on":"Six"},
-	"ModuleTest": { "path": "module-orchestrator/test/modules/Tasks", "on":"Test"},
-	"ModuleTestPromise": { "path": "module-orchestrator/test/modules/Tasks", "on":"TestPromise"},
-	"Timeout": { "path": "module-orchestrator/test/modules/Tasks", "on":"timeout"},
+	"ModuleOne": { "path": "module-orchestrator/test/modules/TasksOdd", "method":"One"},
+	"ModuleTwo": { "path": "module-orchestrator/test/modules/TasksEven", "method":"Two"},
+	"ModuleThree": { "path": "module-orchestrator/test/modules/TasksOdd", "method":"Three"},
+	"ModuleFour": { "path": "module-orchestrator/test/modules/TasksEven", "method":"Four"},
+	"ModuleSix": { "path": "module-orchestrator/test/modules/TasksEven", "method":"Six"},
+	"ModuleTest": { "path": "module-orchestrator/test/modules/Tasks", "method":"Test"},
+	"ModuleTestPromise": { "path": "module-orchestrator/test/modules/Tasks", "method":"TestPromise"},
+	"Timeout": { "path": "module-orchestrator/test/modules/Tasks", "method":"timeout"},
 	"ModuleGeneric": { "path": "module-orchestrator/test/modules/Tasks"}
 }
