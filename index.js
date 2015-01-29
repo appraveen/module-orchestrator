@@ -1,1 +1,1 @@
-module.exports = require('./lib/orchestrator');
+module.exports = require('./lib/Orchestrator');
