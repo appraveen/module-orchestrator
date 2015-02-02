@@ -2,7 +2,7 @@
 var chai = require('chai'),
 	assert = chai.assert,
 	should = chai.should(),
-	orchestrator = require('../lib/orchestrator'),
+	orchestrator = require('../lib/Orchestrator'),
 	helper = require('./modules/helper');
 
 describe('application-modules-test', function() {
