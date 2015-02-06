@@ -1,7 +1,7 @@
 {
   "name": "module-orchestrator",
   "description": "A module for sequencing and executing tasks and dependencies in maximum concurrency",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "homepage": "https://github.com/appraveen/module-orchestrator",
   "repository": "git@github.com:appraveen/module-orchestrator.git",
   "author": "Praveen Athmanathan (https://github.com/appraveen/)",
